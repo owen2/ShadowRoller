@@ -12,7 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" >
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="DicePool">
@@ -24,51 +24,56 @@
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--LayoutRoot is the root grid where all page content is placed-->
+        <controls:Pivot Grid.Row="0">
+            <controls:PivotItem Header="Roller">
+                <Grid x:Name="LayoutRoot" Background="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <controls:Pivot>
-        <controls:PivotItem Header="Roller">
-            <Grid x:Name="LayoutRoot" Background="Transparent">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <!--TitlePanel contains the name of the application and page title-->
-                <!--ContentPanel - place additional content here-->
-                <TextBlock Grid.Row="0" Text="{Binding HitStatus}" Style="{StaticResource PhoneTextTitle2Style}" />
-                        <ListBox Grid.Row="1" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <toolkit:WrapPanel/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                        </ListBox>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="96"/>
-                    </Grid.ColumnDefinitions>
-                    <Slider Minimum="1" Maximum="20"  Value="{Binding DesiredDiceCount,  Mode=TwoWay}" />
-                    <TextBlock Grid.Column="1" Text="{Binding DesiredDiceCount, Mode=TwoWay}" Style="{StaticResource PhoneTextTitle1Style}"  />
+                    <!--TitlePanel contains the name of the application and page title-->
+                    <!--ContentPanel - place additional content here-->
+                    <TextBlock Grid.Row="0" Text="{Binding HitStatus}" Style="{StaticResource PhoneTextTitle2Style}" />
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="96"/>
+                        </Grid.ColumnDefinitions>
+                        <Slider Minimum="1" Maximum="20"  Value="{Binding DesiredDiceCount,  Mode=TwoWay}" />
+                        <TextBlock Grid.Column="1" Text="{Binding DesiredDiceCount, Mode=TwoWay}" Style="{StaticResource PhoneTextTitle1Style}"  />
+                    </Grid>
+                    <Button Grid.Row="3" Click="Button_Click">Roll</Button>
                 </Grid>
-                <Button Grid.Row="3" Click="Button_Click">Roll</Button>
-            </Grid>
-        </controls:PivotItem>
-        <controls:PivotItem Header="Config">
-            <StackPanel>
-                <toolkit:ToggleSwitch  IsChecked="{Binding RuleOfSixesSwitch, Mode=TwoWay}">Rule of Sixes</toolkit:ToggleSwitch>
-                <toolkit:ToggleSwitch IsChecked="{Binding ThresholdIs4Switch, Mode=TwoWay}">Count 4 as a Hit</toolkit:ToggleSwitch>
-                <toolkit:ToggleSwitch IsChecked="{Binding GremlinsEnabledSwitch, Mode=TwoWay}" Content="{Binding GremlinsSwitchText}"></toolkit:ToggleSwitch>
-                <Slider Value="{Binding GremlinsCount, Mode=TwoWay}" IsEnabled="{Binding GremlinsEnabledSwitch, Mode=TwoWay}" Minimum="0" Maximum="4"/>
-                <Button Click="Button_Click_2">Send Feedback</Button>
-                <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Buy Advertising Free Version</Button>
-                <my:AdControl AdUnitId="10038109" ApplicationId="a9e3ef3e-85e3-4d05-b8a8-be9cf0c34639" Width="480" Height="80" Visibility="{Binding ShowAds}"/>
-            </StackPanel>
+            </controls:PivotItem>
+            <controls:PivotItem Header="Config">
+                <StackPanel>
+                    <toolkit:ToggleSwitch  IsChecked="{Binding RuleOfSixesSwitch, Mode=TwoWay}">Rule of Sixes</toolkit:ToggleSwitch>
+                    <toolkit:ToggleSwitch IsChecked="{Binding ThresholdIs4Switch, Mode=TwoWay}">Count 4 as a Hit</toolkit:ToggleSwitch>
+                    <toolkit:ToggleSwitch IsChecked="{Binding GremlinsEnabledSwitch, Mode=TwoWay}" Content="{Binding GremlinsSwitchText}"></toolkit:ToggleSwitch>
+                    <Slider Value="{Binding GremlinsCount, Mode=TwoWay}" IsEnabled="{Binding GremlinsEnabledSwitch, Mode=TwoWay}" Minimum="0" Maximum="4"/>
+                    <Button Click="Button_Click_2">Send Feedback</Button>
+                    <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Buy Advertising Free Version</Button>
+                </StackPanel>
 
-        </controls:PivotItem>
+            </controls:PivotItem>
 
-    </controls:Pivot>
+        </controls:Pivot>
+        <my:AdControl AdUnitId="10038109" ApplicationId="a9e3ef3e-85e3-4d05-b8a8-be9cf0c34639" Width="480" Height="80" Visibility="{Binding ShowAds}" Grid.Row="1" />
+    </Grid>
 </phone:PhoneApplicationPage>
