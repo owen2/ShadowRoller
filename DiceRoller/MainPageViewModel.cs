@@ -68,7 +68,7 @@ namespace DiceRoller
                     badCount++;
             }
 
-            if (badCount > Math.Max((Dice.Count / 2.0) - (GremlinsEnabledSwitch ? GremlinsCount : 0), 0))
+            if (badCount >= Math.Max((Dice.Count / 2.0) - (GremlinsEnabledSwitch ? GremlinsCount : 0), 0))
                 if (hitCount == 0)
                     HitStatus = "CRITICAL GLITCH!";
                 else
