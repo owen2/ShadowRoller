@@ -7,6 +7,7 @@ using System.ComponentModel;
 using Microsoft.Phone.Tasks;
 using System.Windows;
 using Microsoft.Phone.Marketplace;
+using System.Windows.Media;
 
 namespace DiceRoller
 {
@@ -15,12 +16,9 @@ namespace DiceRoller
         public MainPageViewModel()
         {
             TitleText = "ShadowRoller";
-            AvailableDiceCounts = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
             Dice = new ObservableCollection<Die>();
             DesiredDiceCount = 6;
         }
-
-        public List<int> AvailableDiceCounts { get; set; }
 
         public string TitleText { get; set; }
 
@@ -35,22 +33,22 @@ namespace DiceRoller
             }
             set
             {
-                _dicecount = value;
-                //RequestDiceRoll();
+                _dicecount = Math.Max(1,value);
                 if (PropertyChanged != null)
                     PropertyChanged(this, new PropertyChangedEventArgs("DesiredDiceCount"));
             }
         }
 
+        public int BonusDice { get; set; }
+
         internal void RequestDiceRoll()
         {
-            Dice.Clear();
-            for (int i = 0; i < _dicecount; i++)
-            {
-                var d = new Die();
-                Dice.Add(d);
-                d.Roll();
-            }
+            while (_dicecount > Dice.Count)
+                Dice.Add(new Die());
+            while (_dicecount < Dice.Count)
+                Dice.RemoveAt(Dice.Count - 1);
+            foreach (var die in Dice)
+                die.Roll();
             while (BonusDice > 0 && App.Rules.RuleOfSixesEnabled)
             {
                 var d = new Die();
@@ -69,14 +67,21 @@ namespace DiceRoller
             }
 
             if (badCount >= Math.Max((Dice.Count / 2.0) - (GremlinsEnabledSwitch ? GremlinsCount : 0), 0))
+            {
                 if (hitCount == 0)
                     HitStatus = "CRITICAL GLITCH!";
                 else
                     HitStatus = string.Format("Glitch, {0} Hits", hitCount);
+                HitStatusColor = (Brush)App.Current.Resources["PhoneAccentBrush"];
+            }
             else
+            {
                 HitStatus = string.Format("{0} Hits!", hitCount);
+                HitStatusColor = (Brush)App.Current.Resources["PhoneForegroundBrush"];
+            }
 
             PropertyChanged(this, new PropertyChangedEventArgs("HitStatus"));
+            PropertyChanged(this, new PropertyChangedEventArgs("HitStatusColor"));
         }
 
         public bool ThresholdIs4Switch
@@ -112,18 +117,17 @@ namespace DiceRoller
             get { return string.Format("Gremlins ({0})", GremlinsEnabledSwitch ? GremlinsCount.ToString() : "Disabled"); }
         }
 
-        public int BonusDice { get; set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string HitStatus { get; set; }
+        public Brush HitStatusColor { get; set; }
 
         public Visibility ShowAds
         {
             get
             {
                 var li = new LicenseInformation();
-                return li.IsTrial() ? Visibility.Visible : Visibility.Collapsed;
+                return li.IsTrial() || System.Diagnostics.Debugger.IsAttached ? Visibility.Visible : Visibility.Collapsed;
             }
         }
     }

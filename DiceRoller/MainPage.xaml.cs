@@ -53,5 +53,30 @@ namespace DiceRoller
 
             emailComposeTask.Show();
         }
+
+        private void BigStepDownButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            App.MainViewModel.DesiredDiceCount -= 5;
+        }
+
+        private void SmallStepDownButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            App.MainViewModel.DesiredDiceCount -= 1;
+        }
+
+        private void SmallStepUpButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            App.MainViewModel.DesiredDiceCount += 1;
+        }
+
+        private void BigStepUpButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            App.MainViewModel.DesiredDiceCount += 5;
+        }
+
+        private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
+            System.Diagnostics.Debugger.Log(1, "Ads", e.Error.Message);
+        }
     }
 }

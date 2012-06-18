@@ -7,11 +7,11 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DiceRoller")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Dice Tool for Windows Phone")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Pioneer Hi-Bred")]
+[assembly: AssemblyCompany("Owen Johnson")]
 [assembly: AssemblyProduct("DiceRoller")]
-[assembly: AssemblyCopyright("Copyright © Pioneer Hi-Bred 2012")]
+[assembly: AssemblyCopyright("Copyright © Owen Johnson 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,6 +32,6 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.2.0")]
+[assembly: AssemblyFileVersion("1.2.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
