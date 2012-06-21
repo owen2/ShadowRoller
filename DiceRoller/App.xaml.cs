@@ -69,12 +69,14 @@ namespace DiceRoller
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            Persister.LoadSettings();
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            Persister.SaveSettings();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -145,7 +147,6 @@ namespace DiceRoller
         private static Random _random = new Random();
         public static Random Randomizer { get { return _random; } }
 
-        private static ShadowRunRules _rules = new ShadowRunRules();
-        public static ShadowRunRules Rules { get { return _rules; } }
+        public static ShadowRunRules Rules { get; set; }
     }
 }

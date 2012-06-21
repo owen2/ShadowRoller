@@ -61,6 +61,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -71,6 +72,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="Persister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShadowRunRules.cs" />
   </ItemGroup>
