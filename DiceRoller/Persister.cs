@@ -26,10 +26,19 @@ namespace DiceRoller
         }
         public static void LoadSettings()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(ShadowRunRules));
-            FileStream fs = new FileStream("prefs.xml", FileMode.Open);
-            App.Rules  = (ShadowRunRules)serializer.Deserialize(fs);
-            fs.Close();
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ShadowRunRules));
+                FileStream fs = IsolatedStorageFile.GetUserStoreForApplication().OpenFile("prefs.xml", FileMode.Open);
+
+                App.Rules = (ShadowRunRules)serializer.Deserialize(fs);
+                fs.Close();
+            }
+            catch (Exception)
+            {
+                App.Rules = new ShadowRunRules();
+            }
+
         }
     }
 }
