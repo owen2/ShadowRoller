@@ -117,6 +117,12 @@ namespace DiceRoller
             get { return string.Format("Gremlins ({0})", GremlinsEnabledSwitch ? GremlinsCount.ToString() : "Disabled"); }
         }
 
+        public bool ChristmasModeSwitch
+        {
+            get { return App.Rules.ChristmasMode; }
+            set { App.Rules.ChristmasMode = value; }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string HitStatus { get; set; }

@@ -70,6 +70,10 @@ namespace DiceRoller
             {
                 if (_value == Max && App.Rules.RuleOfSixesEnabled)
                     return (Brush)App.Current.Resources["PhoneAccentBrush"];
+                else if (_value >= App.Rules.HitThreshold && App.Rules.ChristmasMode)
+                    return new SolidColorBrush(Colors.Green);
+                else if (_value == Min && App.Rules.ChristmasMode)
+                    return new SolidColorBrush(Colors.Red);
                 else
                     return (Brush)App.Current.Resources["PhoneForegroundBrush"];
             }
