@@ -59,8 +59,7 @@ namespace DiceRoller
                 App.MainViewModel.BonusDice++;
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs("Value"));
-                PropertyChanged(this, new PropertyChangedEventArgs("Color"));
+                PropertyChanged(this, new PropertyChangedEventArgs(""));
             }
         }
 
@@ -69,13 +68,24 @@ namespace DiceRoller
             get
             {
                 if (_value == Max && App.Rules.RuleOfSixesEnabled)
-                    return (Brush)App.Current.Resources["PhoneAccentBrush"];
+                    return App.Brushes.ExplodedColor;
                 else if (_value >= App.Rules.HitThreshold && App.Rules.ChristmasMode)
-                    return new SolidColorBrush(Colors.Green);
+                    return App.Brushes.HitColor;
                 else if (_value == Min && App.Rules.ChristmasMode)
-                    return new SolidColorBrush(Colors.Red);
+                    return App.Brushes.GlitchColor;
                 else
-                    return (Brush)App.Current.Resources["PhoneForegroundBrush"];
+                    return App.Brushes.NormalColor;
+            }
+        }
+
+        public Brush OutlineColor
+        {
+            get
+            {
+                if (App.MainViewModel.Dice.IndexOf(this) >= App.MainViewModel.DesiredDiceCount)
+                    return App.Brushes.ExplodedColor;
+                else
+                    return App.Brushes.NormalColor;
             }
         }
 

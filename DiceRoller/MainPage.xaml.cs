@@ -77,6 +77,7 @@ namespace DiceRoller
         private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
         {
             System.Diagnostics.Debugger.Log(1, "Ads", e.Error.Message);
+            ((Microsoft.Advertising.Mobile.UI.AdControl)sender).Visibility = Visibility.Collapsed;
         }
     }
 }

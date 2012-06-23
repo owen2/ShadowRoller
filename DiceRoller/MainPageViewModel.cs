@@ -72,12 +72,12 @@ namespace DiceRoller
                     HitStatus = "CRITICAL GLITCH!";
                 else
                     HitStatus = string.Format("Glitch, {0} Hits", hitCount);
-                HitStatusColor = (Brush)App.Current.Resources["PhoneAccentBrush"];
+                HitStatusColor = App.Brushes.GlitchColor;
             }
             else
             {
                 HitStatus = string.Format("{0} Hits!", hitCount);
-                HitStatusColor = (Brush)App.Current.Resources["PhoneForegroundBrush"];
+                HitStatusColor = App.Brushes.NormalColor;
             }
 
             PropertyChanged(this, new PropertyChangedEventArgs("HitStatus"));

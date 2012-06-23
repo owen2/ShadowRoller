@@ -19,7 +19,7 @@
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="DicePool">
             <ListBoxItem HorizontalAlignment="Stretch" Margin="10">
-                <Border CornerRadius="5" BorderBrush="{StaticResource PhoneForegroundBrush}" BorderThickness="2" Width="80" Height="80">
+                <Border CornerRadius="5" BorderBrush="{Binding OutlineColor}" BorderThickness="2" Width="80" Height="80">
                     <TextBlock Text="{Binding Value}" Style="{StaticResource PhoneTextTitle1Style}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Color}" />
                 </Border>
             </ListBoxItem>
@@ -72,17 +72,16 @@
             <controls:PivotItem Header="Config">
                 <ScrollViewer>
                     <StackPanel>
-                        <toolkit:ToggleSwitch  IsChecked="{Binding RuleOfSixesSwitch, Mode=TwoWay}">Exploding Sixes</toolkit:ToggleSwitch>
-                        <toolkit:ToggleSwitch IsChecked="{Binding ThresholdIs4Switch, Mode=TwoWay}">4s Count as Hits</toolkit:ToggleSwitch>
+                        <toolkit:ToggleSwitch  IsChecked="{Binding RuleOfSixesSwitch, Mode=TwoWay}">Rule of Sixes</toolkit:ToggleSwitch>
                         <toolkit:ToggleSwitch IsChecked="{Binding GremlinsEnabledSwitch, Mode=TwoWay}" Content="{Binding GremlinsSwitchText}"></toolkit:ToggleSwitch>
                         <Slider Value="{Binding GremlinsCount, Mode=TwoWay}" IsEnabled="{Binding GremlinsEnabledSwitch, Mode=TwoWay}" Minimum="0" Maximum="4"/>
                         <toolkit:ToggleSwitch IsChecked="{Binding ChristmasModeSwitch, Mode=TwoWay}">Color Coded Dice</toolkit:ToggleSwitch>
+                        <toolkit:ToggleSwitch IsChecked="{Binding ThresholdIs4Switch, Mode=TwoWay}">4s Count as Hits</toolkit:ToggleSwitch>
                         <Button Click="Button_Click_2">Send Feedback</Button>
-                        <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Buy Advertising Free Version</Button>
+                        <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Buy Ad-Free Version</Button>
                     </StackPanel>
                 </ScrollViewer>
             </controls:PivotItem>
-
         </controls:Pivot>
         <my:AdControl AdUnitId="10038109" ApplicationId="a9e3ef3e-85e3-4d05-b8a8-be9cf0c34639" Width="480" Height="80" Visibility="{Binding ShowAds}" Grid.Row="1" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True" ErrorOccurred="AdControl_ErrorOccurred" />
     </Grid>

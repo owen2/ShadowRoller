@@ -55,8 +55,9 @@ namespace DiceRoller
                 // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
-            }
 
+            }
+            Brushes = new ColorSettings();
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -149,5 +150,6 @@ namespace DiceRoller
         public static Random Randomizer { get { return _random; } }
 
         public static ShadowRunRules Rules { get; set; }
+        public static ColorSettings Brushes { get; set; }
     }
 }
