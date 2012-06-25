@@ -93,7 +93,7 @@ namespace DiceRoller
         public bool RuleOfSixesSwitch
         {
             get { return App.Rules.RuleOfSixesEnabled; }
-            set { App.Rules.RuleOfSixesEnabled = value; }
+            set { App.Rules.RuleOfSixesEnabled = value; BonusDice = 0; }
         }
 
         public bool GremlinsEnabledSwitch
