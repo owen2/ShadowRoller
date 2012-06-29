@@ -45,11 +45,12 @@ namespace DiceRoller
         public int Min { get; set; }
         public int Max { get; set; }
         private int _value = 0;
-        public int Value { 
-            get 
-            { 
-                return _value; 
-            } 
+        public int Value
+        {
+            get
+            {
+                return _value;
+            }
         }
 
         internal void Roll()
@@ -67,9 +68,7 @@ namespace DiceRoller
         {
             get
             {
-                if (_value == Max && App.Rules.RuleOfSixesEnabled)
-                    return App.Brushes.ExplodedColor;
-                else if (_value >= App.Rules.HitThreshold && App.Rules.ChristmasMode)
+                if (_value >= App.Rules.HitThreshold && App.Rules.ChristmasMode)
                     return App.Brushes.HitColor;
                 else if (_value == Min && App.Rules.ChristmasMode)
                     return App.Brushes.GlitchColor;
