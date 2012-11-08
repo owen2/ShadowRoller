@@ -1,5 +1,4 @@
-﻿<phone:PhoneApplicationPage 
-    xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"  
+﻿<phone:PhoneApplicationPage xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"  
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"  
     x:Class="DiceRoller.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -83,6 +82,6 @@
                 </ScrollViewer>
             </controls:PivotItem>
         </controls:Pivot>
-        <my:AdControl AdUnitId="10038109" ApplicationId="a9e3ef3e-85e3-4d05-b8a8-be9cf0c34639" Width="480" Height="80" Visibility="{Binding ShowAds}" Grid.Row="1" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True" ErrorOccurred="AdControl_ErrorOccurred" />
+        <UI:AdControl AdUnitId="10038109" ApplicationId="a9e3ef3e-85e3-4d05-b8a8-be9cf0c34639" Width="480" Height="80" Visibility="{Binding ShowAds}" Grid.Row="1" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True" ErrorOccurred="AdControl_ErrorOccurred" />
     </Grid>
 </phone:PhoneApplicationPage>
