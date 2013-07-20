@@ -21,3 +21,14 @@ Hard Way:
 3. Developer Unlock your phone
 4. Build DiceRoller.sln and use visual studio to deploy
 5. Enjoy!
+
+License
+=======
+
+This software is licensed to you under the Creative Commons Attribution-NonCommercial 3.0 Unported license.
+
+This software is provided without warranty, express or implied.
+
+The author is not affiliated with Catalyst. 
+
+You may clone, hack on, and use these apps freely, but you cannot sell it or derivatives in the Windows Store. 
