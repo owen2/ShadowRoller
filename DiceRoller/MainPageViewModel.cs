@@ -18,6 +18,7 @@ namespace DiceRoller
             TitleText = "ShadowRoller";
             Dice = new ObservableCollection<Die>();
             DesiredDiceCount = 6;
+            DieTypeSource = new DieSelectorSource(6);
         }
 
         public string TitleText { get; set; }
@@ -33,7 +34,7 @@ namespace DiceRoller
             }
             set
             {
-                _dicecount = Math.Max(1,value);
+                _dicecount = Math.Max(1, value);
                 if (PropertyChanged != null)
                     PropertyChanged(this, new PropertyChangedEventArgs("DesiredDiceCount"));
             }
@@ -43,15 +44,18 @@ namespace DiceRoller
 
         internal void RequestDiceRoll()
         {
+            foreach (var die in Dice)
+                if (die.Max != (int)DieTypeSource.SelectedItem)
+                    die.Max = (int)DieTypeSource.SelectedItem;
             while (_dicecount > Dice.Count)
-                Dice.Add(new Die());
+                Dice.Add(new Die((int)DieTypeSource.SelectedItem));
             while (_dicecount < Dice.Count)
                 Dice.RemoveAt(Dice.Count - 1);
             foreach (var die in Dice)
                 die.Roll();
             while (BonusDice > 0 && App.Rules.RuleOfSixesEnabled)
             {
-                var d = new Die();
+                var d = new Die((int)DieTypeSource.SelectedItem);
                 Dice.Add(d);
                 d.Roll();
                 BonusDice--;
@@ -83,6 +87,8 @@ namespace DiceRoller
             PropertyChanged(this, new PropertyChangedEventArgs("HitStatus"));
             PropertyChanged(this, new PropertyChangedEventArgs("HitStatusColor"));
         }
+
+        public DieSelectorSource DieTypeSource { get; set; }
 
         public bool ThresholdIs4Switch
         {
