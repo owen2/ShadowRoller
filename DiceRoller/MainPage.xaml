@@ -27,13 +27,11 @@
         </DataTemplate>
         <local:dConverter x:Key="dConv"/>
     </phone:PhoneApplicationPage.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!--LayoutRoot is the root grid where all page content is placed-->
         <controls:Pivot Grid.Row="0">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
@@ -41,42 +39,6 @@
                 </DataTemplate>
             </controls:Pivot.HeaderTemplate>
             <controls:PivotItem Header="Dice">
-                <Grid x:Name="LayoutRoot" Background="Transparent">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <!--TitlePanel contains the name of the application and page title-->
-                    <!--ContentPanel - place additional content here-->
-                    <TextBlock Grid.Row="0" Text="{Binding HitStatus}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="{Binding HitStatusColor}" />
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <toolkit:WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                    </ListBox>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1.5*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0"  Content="-5" Name="BigStepDownButton" Tap="BigStepDownButton_Tap"/>
-                        <Button Grid.Column="1" Content="-1" Name="SmallStepDownButton" Tap="SmallStepDownButton_Tap"/>
-                        <TextBlock Name="ValueBox" Text="{Binding DesiredDiceCount}" Grid.Column="2" Style="{StaticResource PhoneTextTitle1Style}" HorizontalAlignment="Center" />
-                        <Button Grid.Column="3" Content="+1" Name="SmallStepUpButton" Tap="SmallStepUpButton_Tap"/>
-                        <Button Grid.Column="4" Content="+5" Name="BigStepUpButton" Tap="BigStepUpButton_Tap"/>
-                    </Grid>
-                    <Button Grid.Row="3" Click="Button_Click">Roll</Button>
-                </Grid>
-            </controls:PivotItem>
-            <controls:PivotItem Header="Advanced">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -94,7 +56,7 @@
                             </DataTemplate>
                         </toolkit:ListPicker.ItemTemplate>
                     </toolkit:ListPicker>
-                    <toolkitPrimitives:LoopingSelector DataSource="{Binding DieTypeSource}" Grid.Row="0" Grid.Column="0" Height="100" ItemSize="100,40">
+                    <toolkitPrimitives:LoopingSelector Name="DesiredDiceChooser" DataSource="{Binding DieTypeSource}"  Grid.Row="0" Grid.Column="0" Height="100" ItemSize="100,40">
                         <toolkitPrimitives:LoopingSelector.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding }"></TextBlock>
