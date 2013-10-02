@@ -21,7 +21,7 @@ namespace DiceRoller
 
         public object GetPrevious(object relativeTo)
         {
-            return (int)relativeTo - 1;
+            return Math.Abs((int)relativeTo - 1);
 
         }
 

@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:local="clr-namespace:DiceRoller"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -24,6 +25,7 @@
                 </Border>
             </ListBoxItem>
         </DataTemplate>
+        <local:dConverter x:Key="dConv"/>
     </phone:PhoneApplicationPage.Resources>
 
     <Grid>
@@ -35,9 +37,10 @@
         <controls:Pivot Grid.Row="0">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" FontSize="32"></TextBlock></DataTemplate>
+                    <TextBlock Text="{Binding}" FontSize="32"></TextBlock>
+                </DataTemplate>
             </controls:Pivot.HeaderTemplate>
-        <controls:PivotItem Header="Simple">
+            <controls:PivotItem Header="Dice">
                 <Grid x:Name="LayoutRoot" Background="Transparent">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -74,13 +77,39 @@
                 </Grid>
             </controls:PivotItem>
             <controls:PivotItem Header="Advanced">
-                <toolkitPrimitives:LoopingSelector DataSource="{Binding DieTypeSource}">
-                    <toolkitPrimitives:LoopingSelector.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
-                        </DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <toolkit:ListPicker ItemsSource="{Binding ValidDieTypes}" SelectedItem="{Binding SelectedDieType}" Grid.Column="1" Grid.Row="0">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource dConv}}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
+                    <toolkitPrimitives:LoopingSelector DataSource="{Binding DieTypeSource}" Grid.Row="0" Grid.Column="0" Height="100" ItemSize="100,40">
+                        <toolkitPrimitives:LoopingSelector.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding }"></TextBlock>
+                            </DataTemplate>
                         </toolkitPrimitives:LoopingSelector.ItemTemplate>
-                </toolkitPrimitives:LoopingSelector>
+                    </toolkitPrimitives:LoopingSelector>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <Button Click="Button_Click" Grid.Row="2" Grid.ColumnSpan="2">Roll</Button>
+                </Grid>
             </controls:PivotItem>
             <controls:PivotItem Header="Options">
                 <ScrollViewer>

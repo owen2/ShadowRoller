@@ -56,7 +56,7 @@ namespace DiceRoller
         internal void Roll()
         {
             _value = App.Randomizer.Next(Min, Max + 1);
-            if (_value == 6)
+            if (_value == Max)
                 App.MainViewModel.BonusDice++;
             if (PropertyChanged != null)
             {
