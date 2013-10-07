@@ -20,6 +20,7 @@ namespace DiceRoller
         {
             InitializeComponent();
             this.DataContext = App.MainViewModel;
+            DesiredDiceChooser.DataSource = new DieSelectorSource();
             DesiredDiceChooser.DataSource.SelectionChanged += DataSource_SelectionChanged;
         }
 

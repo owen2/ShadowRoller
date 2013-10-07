@@ -49,7 +49,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <toolkit:ListPicker ItemsSource="{Binding ValidDieTypes}" SelectedItem="{Binding SelectedDieType}" Grid.Column="1" Grid.Row="0">
+                    <toolkit:ListPicker ItemsSource="{Binding ValidDieTypes}" SelectedItem="{Binding SelectedDieType}" Grid.Column="1" Grid.Row="0" BorderBrush="{StaticResource TransparentBrush}">
                         <toolkit:ListPicker.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Converter={StaticResource dConv}}"/>
@@ -58,12 +58,12 @@
                     </toolkit:ListPicker>
                     <toolkitPrimitives:LoopingSelector Name="DesiredDiceChooser" DataSource="{Binding DieTypeSource}"  Grid.Row="0" Grid.Column="0" Height="100" ItemSize="100,40">
                         <toolkitPrimitives:LoopingSelector.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding }"></TextBlock>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding}"></TextBlock>
                             </DataTemplate>
                         </toolkitPrimitives:LoopingSelector.ItemTemplate>
                     </toolkitPrimitives:LoopingSelector>
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
+                    <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel/>
