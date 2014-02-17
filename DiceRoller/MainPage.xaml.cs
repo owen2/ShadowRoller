@@ -45,9 +45,9 @@ namespace DiceRoller
             new EmailComposeTask { Subject = "Shadow Roller", To = "owenjohnson@outlook.com" }.Show();
         }
 
-        private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        private void DesiredDiceChooser_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
-            ((Microsoft.Advertising.Mobile.UI.AdControl)sender).Visibility = Visibility.Collapsed;
+            (sender as FrameworkElement).CaptureMouse();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"  
+﻿<phone:PhoneApplicationPage 
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"  
     x:Class="DiceRoller.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -32,7 +32,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:Pivot Grid.Row="0">
+        <controls:Pivot Grid.Row="0" TabNavigation="Local" >
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" FontSize="32"></TextBlock>
@@ -41,36 +41,36 @@
             <controls:PivotItem Header="Dice">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <toolkit:ListPicker ItemsSource="{Binding ValidDieTypes}" SelectedItem="{Binding SelectedDieType}" Grid.Column="1" Grid.Row="0" BorderBrush="{StaticResource TransparentBrush}">
+                    <!--<toolkit:ListPicker ItemsSource="{Binding ValidDieTypes}" SelectedItem="{Binding SelectedDieType}" Grid.Column="1" Grid.Row="1" BorderBrush="{StaticResource TransparentBrush}">
                         <toolkit:ListPicker.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Converter={StaticResource dConv}}"/>
                             </DataTemplate>
                         </toolkit:ListPicker.ItemTemplate>
-                    </toolkit:ListPicker>
-                    <toolkitPrimitives:LoopingSelector Name="DesiredDiceChooser" DataSource="{Binding DieTypeSource}"  Grid.Row="0" Grid.Column="0" Height="100" ItemSize="100,40">
+                    </toolkit:ListPicker>-->
+                    <toolkitPrimitives:LoopingSelector Name="DesiredDiceChooser" DataSource="{Binding DieTypeSource}"  Grid.Row="1" Grid.Column="0" Height="150" ItemSize="200,50" ManipulationStarted="DesiredDiceChooser_ManipulationStarted">
                         <toolkitPrimitives:LoopingSelector.ItemTemplate>
                             <DataTemplate >
-                                <TextBlock Text="{Binding}"></TextBlock>
+                                <TextBlock Text="{Binding}" FontSize="32" HorizontalAlignment="Center"></TextBlock>
                             </DataTemplate>
                         </toolkitPrimitives:LoopingSelector.ItemTemplate>
                     </toolkitPrimitives:LoopingSelector>
-                    <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
+                    <ListBox Grid.Row="0" Grid.ColumnSpan="2" ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel/>
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                     </ListBox>
-                    <Button Click="Button_Click" Grid.Row="2" Grid.ColumnSpan="2">Roll</Button>
+                    <Button Click="Button_Click" Grid.Row="1" Grid.Column="1">Roll</Button>
                 </Grid>
             </controls:PivotItem>
             <controls:PivotItem Header="Options">
@@ -87,6 +87,5 @@
                 </ScrollViewer>
             </controls:PivotItem>
         </controls:Pivot>
-        <UI:AdControl AdUnitId="10049097" ApplicationId="264c6f27-2c12-4144-a2ae-b8c69a2ef2de" Width="480" Height="80" Visibility="{Binding ShowAds}" Grid.Row="1" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True" ErrorOccurred="AdControl_ErrorOccurred" />
     </Grid>
 </phone:PhoneApplicationPage>
