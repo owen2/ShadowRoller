@@ -44,10 +44,5 @@ namespace DiceRoller
         {
             new EmailComposeTask { Subject = "Shadow Roller", To = "owenjohnson@outlook.com" }.Show();
         }
-
-        private void DesiredDiceChooser_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
-        {
-            (sender as FrameworkElement).CaptureMouse();
-        }
     }
 }
