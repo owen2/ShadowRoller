@@ -96,6 +96,6 @@
                 </ScrollViewer>
             </controls:PivotItem>
         </controls:Pivot>
-        <UI:AdControl AdUnitId="10038109" ApplicationId="a9e3ef3e-85e3-4d05-b8a8-be9cf0c34639" Width="480" Height="80" Visibility="{Binding ShowAds}" Grid.Row="1" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True" ErrorOccurred="AdControl_ErrorOccurred" />
+        <UI:AdControl AdUnitId="10049097" ApplicationId="264c6f27-2c12-4144-a2ae-b8c69a2ef2de" Width="480" Height="80" Visibility="{Binding ShowAds}" Grid.Row="1" IsAutoCollapseEnabled="True" IsAutoRefreshEnabled="True" ErrorOccurred="AdControl_ErrorOccurred" />
     </Grid>
 </phone:PhoneApplicationPage>
