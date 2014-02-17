@@ -18,6 +18,7 @@ namespace DiceRoller
             TitleText = "ShadowRoller";
             Dice = new ObservableCollection<Die>();
             DesiredDiceCount = 6;
+            SelectedDieType = 6;
             DieTypeSource = new DieSelectorSource(6);
         }
 
@@ -44,18 +45,15 @@ namespace DiceRoller
 
         internal void RequestDiceRoll()
         {
-            foreach (var die in Dice)
-                if (die.Max != (int)DieTypeSource.SelectedItem)
-                    die.Max = (int)DieTypeSource.SelectedItem;
             while (_dicecount > Dice.Count)
-                Dice.Add(new Die((int)DieTypeSource.SelectedItem));
+                Dice.Add(new Die(SelectedDieType));
             while (_dicecount < Dice.Count)
                 Dice.RemoveAt(Dice.Count - 1);
             foreach (var die in Dice)
                 die.Roll();
             while (BonusDice > 0 && App.Rules.RuleOfSixesEnabled)
             {
-                var d = new Die((int)DieTypeSource.SelectedItem);
+                var d = new Die(SelectedDieType);
                 Dice.Add(d);
                 d.Roll();
                 BonusDice--;
@@ -142,5 +140,9 @@ namespace DiceRoller
                 return li.IsTrial() || System.Diagnostics.Debugger.IsAttached ? Visibility.Visible : Visibility.Collapsed;
             }
         }
+
+        int _selectedDieSize;
+        public int SelectedDieType { get { return _selectedDieSize; } set { _selectedDieSize = value; Dice.Clear(); } }
+        public int[] ValidDieTypes { get { return new[] { 2, 4, 6, 8, 10, 20, 100 }; } }
     }
 }

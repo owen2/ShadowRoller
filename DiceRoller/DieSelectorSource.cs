@@ -21,7 +21,7 @@ namespace DiceRoller
 
         public object GetPrevious(object relativeTo)
         {
-            return (int)relativeTo - 1;
+            return Math.Abs((int)relativeTo - 1);
 
         }
 
@@ -34,10 +34,13 @@ namespace DiceRoller
             }
             set
             {
+                var old = _selected;
                 _selected = value;
-                
-                if (PropertyChanged!=null)
+
+                if (PropertyChanged != null)
                     PropertyChanged(this, new PropertyChangedEventArgs("SelectedItem"));
+                if (SelectionChanged != null)
+                    SelectionChanged(this, new System.Windows.Controls.SelectionChangedEventArgs(new List<object>() { old }, new List<object>() { value }));
             }
         }
 

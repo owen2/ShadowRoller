@@ -18,21 +18,13 @@ namespace DiceRoller
     {
         public static void SaveSettings()
         {
-            var file = IsolatedStorageFile.GetUserStoreForApplication().CreateFile("prefs.xml");
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(ShadowRunRules));
-            serializer.Serialize(file, App.Rules);
-            file.Flush();
-            file.Close();
+            IsolatedStorageSettings.ApplicationSettings["prefs"] = App.Rules;
         }
         public static void LoadSettings()
         {
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(ShadowRunRules));
-                FileStream fs = IsolatedStorageFile.GetUserStoreForApplication().OpenFile("prefs.xml", FileMode.Open);
-
-                App.Rules = (ShadowRunRules)serializer.Deserialize(fs);
-                fs.Close();
+                App.Rules = (ShadowRunRules)IsolatedStorageSettings.ApplicationSettings["prefs"];
             }
             catch (Exception)
             {
