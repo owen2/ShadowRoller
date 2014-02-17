@@ -49,7 +49,7 @@ namespace DiceRoller
 
             emailComposeTask.Subject = "ShadowRoller";
             emailComposeTask.Body = "";
-            emailComposeTask.To = "owen@owenjohnson.info";
+            emailComposeTask.To = "owenjohnson@outlook.com";
 
             emailComposeTask.Show();
         }

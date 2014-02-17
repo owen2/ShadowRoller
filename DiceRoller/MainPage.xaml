@@ -37,7 +37,7 @@
                 <DataTemplate>
                     <TextBlock Text="{Binding}" FontSize="32"></TextBlock></DataTemplate>
             </controls:Pivot.HeaderTemplate>
-        <controls:PivotItem Header="Simple">
+        <controls:PivotItem Header="Dice">
                 <Grid x:Name="LayoutRoot" Background="Transparent">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -73,7 +73,7 @@
                     <Button Grid.Row="3" Click="Button_Click">Roll</Button>
                 </Grid>
             </controls:PivotItem>
-            <controls:PivotItem Header="Advanced">
+            <!--<controls:PivotItem Header="Advanced">
                 <toolkitPrimitives:LoopingSelector DataSource="{Binding DieTypeSource}">
                     <toolkitPrimitives:LoopingSelector.ItemTemplate>
                         <DataTemplate>
@@ -81,7 +81,7 @@
                         </DataTemplate>
                         </toolkitPrimitives:LoopingSelector.ItemTemplate>
                 </toolkitPrimitives:LoopingSelector>
-            </controls:PivotItem>
+            </controls:PivotItem>-->
             <controls:PivotItem Header="Options">
                 <ScrollViewer>
                     <StackPanel>
@@ -91,7 +91,7 @@
                         <toolkit:ToggleSwitch IsChecked="{Binding ChristmasModeSwitch, Mode=TwoWay}">Color Coded Dice</toolkit:ToggleSwitch>
                         <toolkit:ToggleSwitch IsChecked="{Binding ThresholdIs4Switch, Mode=TwoWay}">4s Count as Hits</toolkit:ToggleSwitch>
                         <Button Click="Button_Click_2">Send Feedback</Button>
-                        <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Remove Ads</Button>
+                        <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Support this App</Button>
                     </StackPanel>
                 </ScrollViewer>
             </controls:PivotItem>
