@@ -70,7 +70,7 @@
                         <Button Grid.Column="3" Content="+1" Name="SmallStepUpButton" Tap="SmallStepUpButton_Tap"/>
                         <Button Grid.Column="4" Content="+5" Name="BigStepUpButton" Tap="BigStepUpButton_Tap"/>
                     </Grid>
-                    <Button Grid.Row="3" Click="Button_Click">Roll</Button>
+                    <Button Grid.Row="3" Click="Button_Click" ClickMode="Press">Roll</Button>
                 </Grid>
             </controls:PivotItem>
             <!--<controls:PivotItem Header="Advanced">
@@ -90,8 +90,8 @@
                         <Slider Value="{Binding GremlinsCount, Mode=TwoWay}" IsEnabled="{Binding GremlinsEnabledSwitch, Mode=TwoWay}" Minimum="0" Maximum="4" />
                         <toolkit:ToggleSwitch IsChecked="{Binding ChristmasModeSwitch, Mode=TwoWay}">Color Coded Dice</toolkit:ToggleSwitch>
                         <toolkit:ToggleSwitch IsChecked="{Binding ThresholdIs4Switch, Mode=TwoWay}">4s Count as Hits</toolkit:ToggleSwitch>
-                        <Button Click="Button_Click_2">Send Feedback</Button>
-                        <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Support this App</Button>
+                        <Button Click="Button_Click_2">Email the guy who made this</Button>
+                        <Button Visibility="{Binding ShowAds}" Click="Button_Click_1">Support this app</Button>
                     </StackPanel>
                 </ScrollViewer>
             </controls:PivotItem>

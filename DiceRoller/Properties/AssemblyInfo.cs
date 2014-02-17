@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Owen Johnson")]
 [assembly: AssemblyProduct("DiceRoller")]
-[assembly: AssemblyCopyright("Copyright © Owen Johnson 2012")]
+[assembly: AssemblyCopyright("Copyright © Owen Johnson 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,6 +32,6 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.2.0")]
-[assembly: AssemblyFileVersion("1.2.0")]
+[assembly: AssemblyVersion("1.5.0")]
+[assembly: AssemblyFileVersion("1.5.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
