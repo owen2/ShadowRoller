@@ -41,35 +41,27 @@
             <controls:PivotItem Header="Dice">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-
-                    </Grid.ColumnDefinitions>
-                    <!--<toolkit:ListPicker ItemsSource="{Binding ValidDieTypes}" SelectedItem="{Binding SelectedDieType}" Grid.Column="1" Grid.Row="1" BorderBrush="{StaticResource TransparentBrush}">
-                        <toolkit:ListPicker.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource dConv}}"/>
-                            </DataTemplate>
-                        </toolkit:ListPicker.ItemTemplate>
-                    </toolkit:ListPicker>-->
-                    <toolkitPrimitives:LoopingSelector Name="DesiredDiceChooser" DataSource="{Binding DieTypeSource}"  Grid.Row="1" Grid.Column="0" Height="100" ItemSize="400,50" ManipulationStarted="DesiredDiceChooser_ManipulationStarted">
+                    <TextBlock Grid.Row="0" Margin="10" Text="{Binding HitStatus}" Foreground="{Binding HitStatusColor}" FontSize="36"/>
+                    <toolkitPrimitives:LoopingSelector Name="DesiredDiceChooser" DataSource="{Binding DieTypeSource}"  Grid.Row="2" Grid.Column="0" Height="100" ItemSize="400,50" >
                         <toolkitPrimitives:LoopingSelector.ItemTemplate>
                             <DataTemplate >
                                 <TextBlock Text="{Binding}" FontSize="32" HorizontalAlignment="Center"></TextBlock>
                             </DataTemplate>
                         </toolkitPrimitives:LoopingSelector.ItemTemplate>
                     </toolkitPrimitives:LoopingSelector>
-                    <ListBox Grid.Row="0"  ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
+                    <ListBox Grid.Row="1"  ItemsSource="{Binding Dice}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource DicePool}" >
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel/>
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                     </ListBox>
-                    <Button Click="Button_Click" Grid.Row="2" >Roll</Button>
+                    <Button Click="Button_Click" Grid.Row="3" >Roll</Button>
                 </Grid>
             </controls:PivotItem>
             <controls:PivotItem Header="Options">
